@@ -1,0 +1,6 @@
+project: rnshah9/mayhem-cone
+target: conec
+
+cmds:
+  - cmd: /cone/conec @@
+    filepath: /test.cone
