@@ -11,8 +11,9 @@ RUN make
 RUN mkdir -p /deps
 RUN ldd /cone/conec | tr -s '[:blank:]' '\n' | grep '^/' | xargs -I % sh -c 'cp % /deps;'
 
-FROM ubuntu:20.04 as package
+FROM ubuntu:22.04 as package
 
 COPY --from=builder /deps /deps
 COPY --from=builder /cone/conec /cone/conec
+RUN rm ./deps/libc.so.6
 ENV LD_LIBRARY_PATH=/deps
