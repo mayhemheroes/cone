@@ -7,3 +7,12 @@ ADD . /cone
 WORKDIR /cone
 RUN CC=clang-13 CXX=clang++-13 cmake .
 RUN make
+
+RUN mkdir -p /deps
+RUN ldd /cone/conec | tr -s '[:blank:]' '\n' | grep '^/' | xargs -I % sh -c 'cp % /deps;'
+
+FROM ubuntu:20.04 as package
+
+COPY --from=builder /deps /deps
+COPY --from=builder /cone/conec /cone/conec
+ENV LD_LIBRARY_PATH=/deps
