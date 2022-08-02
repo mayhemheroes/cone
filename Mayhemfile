@@ -3,3 +3,4 @@ target: conec
 
 cmds:
   - cmd: /conec @@
+    filepath: /test.cone
