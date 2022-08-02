@@ -2,5 +2,4 @@ project: cone
 target: conec
 
 cmds:
-  - cmd: /cone/conec /test.cone
-    filepath: /test.cone
+  - cmd: /conec @@
